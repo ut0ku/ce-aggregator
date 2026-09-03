@@ -1,0 +1,43 @@
+export function getThemeTokens(dark) {
+  return dark
+    ? {
+        bg: 'bg-[#171717]',
+        panel: 'bg-[#202020]',
+        card: 'bg-[#262626]',
+        text: 'text-[#f2f2f2]',
+        sub: 'text-[#b8b8b8]',
+        date: 'text-[#ff9d3d]',
+        line: 'bg-[#4a4a4a]',
+        border: 'border-[#3a3a3a]',
+        hover: 'hover:bg-[#303030]',
+        divide: 'divide-[#3a3a3a]',
+        sourceText: 'text-[#d0d0d0]',
+        amber: 'text-[#ff9d3d]',
+        accent: 'text-[#ff9d3d]',
+        accentBg: 'bg-[#ff9d3d]',
+          accentBorder: 'border-amber-700',
+          accentSoft: 'bg-amber-700/10',
+        skeleton: 'bg-[#343434]',
+        shadow: 'shadow-[0_16px_40px_rgba(0,0,0,0.18)]',
+      }
+    : {
+        bg: 'bg-[#f7f0e3]',
+        panel: 'bg-[#fbf4e8]',
+        card: 'bg-[#fffaf2]',
+        text: 'text-[#2f2418]',
+        sub: 'text-[#7f6f5f]',
+        date: '',
+      line: 'bg-[#dcc8ac]',
+        border: 'border-[#e6d6bf]',
+        hover: 'hover:bg-[#f0e5d3]',
+        divide: 'divide-[#eadbc4]',
+        sourceText: 'text-[#5e4f40]',
+        amber: 'text-amber-500',
+        accent: 'text-amber-500',
+        accentBg: 'bg-amber-500',
+        accentBorder: 'border-amber-500',
+        accentSoft: 'bg-amber-500/10',
+        skeleton: 'bg-[#eadfcb]',
+        shadow: 'shadow-[0_16px_40px_rgba(102,74,34,0.08)]',
+      };
+}

@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #f7f0e3;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+}
+
+button,
+[role='button'] {
+  touch-action: manipulation;
+}
+
+@media (max-width: 374px) {
+  html {
+    font-size: 15px;
+  }
+}
