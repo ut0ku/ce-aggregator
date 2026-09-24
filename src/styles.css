@@ -6,6 +6,10 @@ html, body, #root {
   height: 100%;
 }
 
+html {
+  background: #f7f0e3;
+}
+
 body {
   margin: 0;
   background: #f7f0e3;
@@ -25,4 +29,18 @@ button,
   html {
     font-size: 15px;
   }
+}
+
+.theme-wave-snapshot {
+  position: fixed;
+  z-index: 9999;
+  overflow: hidden;
+  pointer-events: none;
+  will-change: clip-path;
+}
+
+.theme-wave-snapshot,
+.theme-wave-snapshot * {
+  animation: none !important;
+  transition: none !important;
 }

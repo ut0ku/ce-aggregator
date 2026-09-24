@@ -1,9 +1,9 @@
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, LogIn, LogOut, Shield, UserRound } from 'lucide-react';
 import DropdownSelect from './DropdownSelect.jsx';
 
 export default function Header({
   dark,
-  setDark,
+  toggleTheme,
   tk,
   scrolled,
   city,
@@ -16,8 +16,57 @@ export default function Header({
   setTopicOpen,
   cities,
   topics,
+  user,
+  onAuthClick,
+  onLogout,
+  onProfileClick,
+  onAdminClick,
 }) {
   const activeTopic = topics.find((topic) => topic.id === topicId) || topics[0];
+
+  const authButton = user ? (
+    <div className="flex items-center gap-2">
+      <span className={`hidden max-w-[8rem] truncate text-xs sm:inline ${tk.sub}`}>{user.username}</span>
+      {user.isAdmin && (
+        <button
+          type="button"
+          onClick={onAdminClick}
+          aria-label="Панель администратора"
+          className={`inline-flex h-[42px] w-[42px] items-center justify-center rounded-full border ${tk.border} ${tk.card} ${tk.hover}`}
+        >
+          <Shield size={15} className={tk.accent} />
+        </button>
+      )}
+      <button
+        type="button"
+        onClick={onProfileClick}
+        aria-label="Профиль"
+        title="Профиль"
+        className={`inline-flex h-[42px] items-center gap-1.5 rounded-full border px-3 text-xs font-medium ${tk.border} ${tk.card} ${tk.hover}`}
+      >
+        <UserRound size={15} />
+        <span className="hidden sm:inline">Профиль</span>
+      </button>
+      <button
+        type="button"
+        onClick={onLogout}
+        aria-label="Выйти"
+        className={`inline-flex h-[42px] items-center gap-1.5 rounded-full border px-3 text-xs font-medium ${tk.border} ${tk.card} ${tk.hover}`}
+      >
+        <LogOut size={15} />
+        <span className="hidden sm:inline">Выйти</span>
+      </button>
+    </div>
+  ) : (
+    <button
+      type="button"
+      onClick={onAuthClick}
+      className={`inline-flex h-[42px] items-center gap-1.5 rounded-full border px-3 text-xs font-medium ${tk.border} ${tk.card} ${tk.hover}`}
+    >
+      <LogIn size={15} />
+      <span>Войти</span>
+    </button>
+  );
 
   return (
     <header
@@ -40,7 +89,7 @@ export default function Header({
             scrolled ? 'opacity-0 -translate-y-3 pointer-events-none' : 'opacity-100 translate-y-0'
           }`}
         >
-          <div className="flex flex-col justify-center gap-3 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex w-full flex-col justify-center gap-3 lg:flex-row lg:items-center lg:justify-between">
             <div className="space-y-0.5">
               <div className="flex items-center gap-2">
                 <span className={`inline-block h-2 w-2 rounded-full ${tk.accentBg} animate-pulse`} aria-hidden="true" />
@@ -51,7 +100,7 @@ export default function Header({
               </p>
             </div>
 
-            <div className="grid min-w-0 grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] items-end gap-2.5 sm:gap-3 lg:min-w-[31rem]">
+            <div className="grid min-w-0 grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto_auto] items-end gap-2.5 sm:gap-3 lg:min-w-[36rem]">
               <div className="min-w-0">
                 <DropdownSelect
                   label="Темы"
@@ -97,12 +146,17 @@ export default function Header({
               <div className="flex min-w-[3rem] flex-col items-start">
                 <p className={`mb-1 text-[11px] uppercase tracking-[0.24em] ${tk.sub}`}>Тема</p>
                 <button
-                  onClick={() => setDark((value) => !value)}
+                  onClick={toggleTheme}
                   aria-label="Переключить тему"
                   className={`h-[42px] w-[42px] rounded-full border ${tk.border} ${tk.card} ${tk.hover} ${tk.shadow} flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500`}
                 >
-                  {dark ? <Sun size={18} /> : <Moon size={18} />}
+                  {dark ? <Moon size={18} /> : <Sun size={18} />}
                 </button>
+              </div>
+
+              <div className="flex min-w-[5rem] flex-col items-start">
+                <p className={`mb-1 text-[11px] uppercase tracking-[0.24em] ${tk.sub}`}>Аккаунт</p>
+                {authButton}
               </div>
             </div>
           </div>

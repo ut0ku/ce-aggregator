@@ -24,11 +24,17 @@ function expandDescription(item, city) {
   return `${item.description}${locationPart}${eventPart}${detailPart}`;
 }
 
+function fallbackArticleUrl(item, topicId, index) {
+  const query = encodeURIComponent(`${item.title} ${item.source}`);
+  return `https://www.google.com/search?q=${query}`;
+}
+
 export function buildFeed(topicId, city) {
-  const items = CONTENT[topicId] || [];
+  const items = CONTENT[topicId] || CONTENT.it || [];
   return items.map((item, index) => ({
     ...item,
     id: `${topicId}-${index}`,
+    url: item.url || fallbackArticleUrl(item, topicId, index),
     image: `https://picsum.photos/seed/${topicId}-${index}-v2/${index === 0 ? '420/280' : '900/600'}`,
     metaLabel: item.isEvent ? eventDateLabel(index) : relativeTimeLabel(index),
     cityTag: item.needsCity ? city.name : null,
