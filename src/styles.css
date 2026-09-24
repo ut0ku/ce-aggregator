@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+html {
+  background: #f7f0e3;
+}
+
+body {
+  margin: 0;
+  background: #f7f0e3;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+}
+
+button,
+[role='button'] {
+  touch-action: manipulation;
+}
+
+@media (max-width: 374px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+.theme-wave-snapshot {
+  position: fixed;
+  z-index: 9999;
+  overflow: hidden;
+  pointer-events: none;
+  will-change: clip-path;
+}
+
+.theme-wave-snapshot,
+.theme-wave-snapshot * {
+  animation: none !important;
+  transition: none !important;
+}
